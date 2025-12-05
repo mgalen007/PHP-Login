@@ -7,19 +7,24 @@
         $login_successful = false;
 
         # Authentication
-        foreach ($_SESSION["users"] as $user){
-            if ($email == $user[0] && $password == $user[1]){
-                $login_successful = true;
+        if (isset($_SESSION["users"])){
+            foreach ($_SESSION["users"] as $user){
+                if ($email == $user[0] && $password == $user[1]){
+                    $login_successful = true;
+                }
+            }
+
+            if ($login_successful){
+                $_SESSION["user_email"] = $email;
+                header("Location: home.php");
+                exit;
+            }
+            else{
+                echo "<p id='invalid'>Invalid username or password</p>";
             }
         }
-
-        if ($login_successful){
-            $_SESSION["user_email"] = $email;
-            header("Location: home.php");
-            exit;
-        }
-        else{
-            echo "<p id='invalid'>Invalid username or password</p>";
+        else {
+            echo "<p id='invalid'>You have not registered yet!</p>";
         }
     }
 ?>
