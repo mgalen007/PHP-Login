@@ -19,7 +19,7 @@
             exit;
         }
         else{
-            echo "<p id='invalid'>Invalid username or email</p>";
+            echo "<p id='invalid'>Invalid username or password</p>";
         }
     }
 ?>
